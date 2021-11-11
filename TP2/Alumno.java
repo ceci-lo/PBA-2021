@@ -11,14 +11,17 @@ import java.util.List;
  *
  * @author SECRETARIA
  */
-public class MatricularAlumno  {
+public class Alumno  {
     private int nLegajo;
     private String nombre;
     private String apellido;
     private int fechaNacimiento;
     private String email;
     
-     public MatricularAlumno(int nLegajo, String nombre, String apellido, int fechaNacimiento, String email) {
+    public Alumno (){
+    
+    }
+     public Alumno(int nLegajo, String nombre, String apellido, int fechaNacimiento, String email) {
         this.nLegajo = nLegajo;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -70,23 +73,6 @@ public class MatricularAlumno  {
     public String toString() {
         return   nLegajo + " nombre= " + nombre + ", apellido= " + apellido + " fechaNacimiento: " + fechaNacimiento + ", email = " + email;
     }
-     public List InscribirAlumno(MatricularAlumno a){
-     List  alumnos = new ArrayList();
-            for( int i = 0 ; i < alumnos.size(); i++){
-            alumnos.add(a);
-        }
-        
-        return alumnos;
-     }
-     public List EliminarAlumno(List a, int l){
-         for (int i = 0; i < a.size(); i++) {
-             if(i == l){
-              a.remove(l);
-              System.out.println("El Alumno ha sido borrado exitosamente");
-             }else {
-                 System.out.println("El Alumno no se encuentra en el sistema");
-             }
-         }
-         return  a;
-     }
+    
+     
 }
