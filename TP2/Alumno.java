@@ -11,17 +11,18 @@ import java.util.List;
  *
  * @author SECRETARIA
  */
-public class Alumno  {
+public class Alumno  implements  Comparable<Alumno>{
+    
     private int nLegajo;
     private String nombre;
     private String apellido;
-    private int fechaNacimiento;
+    private String fechaNacimiento;
     private String email;
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
     
-    public Alumno (){
-    
-    }
-     public Alumno(int nLegajo, String nombre, String apellido, int fechaNacimiento, String email) {
+    public Alumno(int nLegajo, String nombre, String apellido, String fechaNacimiento, String email) {
         this.nLegajo = nLegajo;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -53,11 +54,11 @@ public class Alumno  {
         this.apellido = apellido;
     }
 
-    public int getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(int fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -71,8 +72,18 @@ public class Alumno  {
 
     @Override
     public String toString() {
-        return   nLegajo + " nombre= " + nombre + ", apellido= " + apellido + " fechaNacimiento: " + fechaNacimiento + ", email = " + email;
+        return ANSI_GREEN +"id "+ANSI_RESET+ nLegajo +ANSI_GREEN+ " nombre : "+ ANSI_RESET + nombre + ANSI_GREEN+ ", apellido= " +ANSI_RESET+ apellido +ANSI_GREEN + " fechaNacimiento: "+ANSI_RESET +  fechaNacimiento + ANSI_GREEN+ ", email : "+ ANSI_RESET + email ;
     }
+    public int compareTo(Alumno a){
+          int sortApellido = apellido.compareTo(a.getApellido());
+          
+          if(sortApellido != 0){
+              return sortApellido;
+          }
+         
+          return nombre.compareTo(a.getNombre());
+      
+      }
+   
     
-     
 }

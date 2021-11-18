@@ -1,5 +1,5 @@
-
 package TP2;
+
 import java.util.*;
 
 public class App {
@@ -8,40 +8,103 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        
-        Menu();
-        
-       
-        
-       
-       // MatricularAlumno.add( new Alumno(in.nextInt(), in.nextLine(),in.nextLine(),in.nextInt(),in.nextLine()));
 
-        
+        Menu();
+
     }
-    public static void Menu(){
+
+    public static void Menu() {
         Scanner in = new Scanner(System.in);
+
+        Materia S = new Materia();
+
+        List<Materia> nuevaMateria = new ArrayList();
+
         System.out.println("    MENÚ INICIO ");
         System.out.println(" ==================== ");
         System.out.println("1. -- Registrar Materia");
         System.out.println("9.- Salir. ");
         System.out.println("Ingrese una opción");
-        
+
         int opcion = in.nextInt();
+
         switch (opcion) {
+
             case 1:
-                RegistrarMateria M1 = new RegistrarMateria(in.nextLine(), in.nextLine());
-                System.out.println(M1);
+                nuevaMateria.add(S.RegistrarMateria());
+                System.out.println(nuevaMateria);
                 // Menu gestionar materia
-                MenuGestionaMateria();
+                MenuGestionMateria();
                 break;
+
             case 9:
                 System.out.println("Gracias. Uested ha salido del sistema");
                 break;
         }
 
     }
-    public static void MenuGestionaMateria(){
+
+    public static void MenuGestionMateria() {
+
+        Scanner in = new Scanner(System.in);
+
+        Materia materia = new Materia();
+         
+
+        //me  guarda los datos en el array
+       
+        int opcion ;
+        opcion = mostrarMenu();
+        do {
+         
+            if (opcion == 1) {
+
+                System.out.println("MATRICULAR ALUMNO");
+
+                materia.MatricularAlumno();
+
+                System.out.println("El alumno ha sido añadido con éxito");
+
+                System.out.println(materia.Alumnos());
+
+                System.out.println("1. cargar otro alumno");
+                System.out.println("9. Atras");
+            } else if (opcion == 2) {
+
+                System.out.println("DESMATRICULAR ALUMNO");
+
+                System.out.println("Ingrese el numero de legajo del alumno que desee desmatricular");
+                int nLegajo = in.nextInt();
+
+                materia.DesmatricularAlumno(nLegajo);
+
+                System.out.println("1. Desmatricular otro alumno");
+                System.out.println("9. Atras");
+            } else if(opcion == 3){
+                
+                materia.registrarAsistencia();
+            
+                System.out.println("9. Atras.");
+            } else if (opcion == 4) {
+                System.out.println(" LISTADO INSCRIPTOS  ");
+                materia.imprimirInscriptos();
+                System.out.println("9. Atras.");
+            }
+            opcion = in.nextInt();
+            in.nextLine();
+
+            if (opcion != 1) {
+                opcion = mostrarMenu();
+
+            }
+        } while (opcion != 0);
+
+        System.out.println(materia.Alumnos());
+
+    }
+
+    public static int mostrarMenu() {
+
         Scanner in = new Scanner(System.in);
         System.out.println("    GESTIONAR MATERIA   ");
         System.out.println(" =========================== ");
@@ -53,40 +116,9 @@ public class App {
         System.out.println("        5.-  Visualizar Asistencia ");
         System.out.println("9.- Salir");
         System.out.println("Ingrese una opcion ");
+
         int opcion = in.nextInt();
-        switch(opcion){
-            case 1: System.out.println("MATRICULAR ALUMNO");
-                    MatricularAlumno();
-            break;
-            case 2: System.out.println("DESMATRICULAR ALUMNO");
-            break;
-            case 3: System.out.println("GESTIONAR ASISTENCIA");
-            break;
-            case 4: System.out.println("LISTADO DE INSCRIPTOS");
-            break;
-            case 5: System.out.println("VISULIZAR ASISTENCIA");
-        
-        }
-        
+        return opcion;
     }
-    public static void MatricularAlumno(){
-        Scanner in = new Scanner(System.in);
-        System.out.println("Ingrese al nuevo alumno");
-         List <Alumno> MatricularAlumno = new ArrayList();
-         //me pide los datos del alumno por consola
-         System.out.println("Ingresa el Número de legajo : ");
-         int nLegajo = in.nextInt();
-          System.out.println("Ingresa el Nombre : ");
-         String nombre = in.nextLine(); 
-         System.out.println("Ingresa el Apellido : ");
-         String apellido = in.nextLine();
-         System.out.println("Ingresa la fecha de nacimiento : ");
-         int fecha = in.nextInt();
-         System.out.println("Ingresa el Email : ");
-         String email = in.nextLine();
-         //me  guarda los datos en el array
-         MatricularAlumno.add(new Alumno(nLegajo,nombre,apellido, fecha,email));
-         System.out.println(MatricularAlumno);
-    }
-    
+
 }
