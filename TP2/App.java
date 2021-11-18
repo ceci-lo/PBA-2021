@@ -14,11 +14,11 @@ public class App {
     }
 
     public static void Menu() {
-        Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);   
 
         Materia S = new Materia();
 
-        List<Materia> nuevaMateria = new ArrayList();
+        
 
         System.out.println("    MENÚ INICIO ");
         System.out.println(" ==================== ");
@@ -31,8 +31,8 @@ public class App {
         switch (opcion) {
 
             case 1:
-                nuevaMateria.add(S.RegistrarMateria());
-                System.out.println(nuevaMateria);
+                S.RegistrarMateria();
+              
                 // Menu gestionar materia
                 MenuGestionMateria();
                 break;
@@ -83,12 +83,17 @@ public class App {
             } else if(opcion == 3){
                 
                 materia.registrarAsistencia();
-            
                 System.out.println("9. Atras.");
+                
             } else if (opcion == 4) {
+                
                 System.out.println(" LISTADO INSCRIPTOS  ");
                 materia.imprimirInscriptos();
                 System.out.println("9. Atras.");
+                
+            } else if (opcion == 5){
+                materia.imprimirAsistencia();
+                System.out.println("9. Atras");
             }
             opcion = in.nextInt();
             in.nextLine();
@@ -97,7 +102,7 @@ public class App {
                 opcion = mostrarMenu();
 
             }
-        } while (opcion != 0);
+        } while (opcion != 9);
 
         System.out.println(materia.Alumnos());
 
